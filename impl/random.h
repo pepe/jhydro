@@ -17,6 +17,8 @@ static TLS struct {
 # include "random/windows.h"
 #elif defined(__wasi__)
 # include "random/wasi.h"
+#elif defined(__linux__) && defined(__KERNEL__)
+# include "random/linux_kernel.h"
 #elif defined(__unix__)
 # include "random/unix.h"
 #elif defined(TARGET_LIKE_MBED)
@@ -25,6 +27,8 @@ static TLS struct {
 # include "random/riot.h"
 #elif defined(STM32F4)
 # include "random/stm32.h"
+#elif defined(__RTTHREAD__)
+# include "random/rtthread.h"
 #else
 # error Unsupported platform
 #endif
